@@ -1,0 +1,46 @@
+{% include 'header.html' %}
+{% for empleado in empleados %}
+
+
+<form action="/edit/{{ empleado.id }}" method="POST" enctype="multipart/form-data">
+    <div class="card">
+        <div class="card-header">
+            Editar Empleado
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">Datos del Empleado</h5>
+            <div class="form-group">
+                <label for="txtID">ID:</label>
+                <input type="text" class="form-control" value="{{empleado[0] }}" name="txtID" id="txtID" readonly>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="txtNombre">Nombre:</label>
+                <input type="text" class="form-control" value="{{empleado[1] }}" name="txtNombre" id="txtNombre">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="txtCorreo">Correo:</label>
+                <input type="text" class="form-control" value="{{empleado[2] }}" name="txtCorreo" id="txtCorreo">
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="txtFoto">Foto:</label>
+                <br>
+                <img class="img-thumbnail" width="180" src="{{url_for('uploads', nombreFoto=empleado[3]) }}" alt="">
+                <br>
+                <input type="file" class="form-control-file" name="txtFoto" id="txtFoto">
+            </div>
+            <br>
+            <div class="form-group">
+                <input type="submit" class="btn btn-success" value="Agregar">
+            </div>
+            <a href="{{url_for('index')}}" class="btn btn-primary">Regresar</a>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+{% endfor %}
+{% include 'footer.html' %}
